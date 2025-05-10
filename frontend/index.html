@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aumekaa</title>
+  <link rel="stylesheet" href="styles/app.css" />
+  <link rel="stylesheet" href="styles/navbar.css" />
+  <link rel="stylesheet" href="styles/hero.css" />
+  <link rel="stylesheet" href="styles/plates.css" />
+</head>
+<body>
+  <div include-html="sections/navbar.html"></div>
+  <div include-html="sections/hero.html"></div>
+  <div include-html="sections/plates.html" id="plates-section" style="display: none;"></div>
+  <div include-html="sections/signup.html" id="signup-section" style="display: none;"></div>
+
+
+  <script>
+    function includeHTML() {
+      const elements = document.querySelectorAll('[include-html]');
+      elements.forEach(el => {
+        const file = el.getAttribute("include-html");
+        if (file) {
+          fetch(file)
+            .then(resp => {
+              if (!resp.ok) throw new Error(`Cannot load ${file}`);
+              return resp.text();
+            })
+            .then(data => {
+              el.innerHTML = data;
+              el.removeAttribute("include-html");
+              includeHTML(); // recursive
+              setupProductClick();
+              setupHomeClick();
+              setupLoginClick(); // 👈 call after loading
+            })
+            .catch(err => {
+              el.innerHTML = `<!-- ${err.message} -->`;
+            });
+        }
+      });
+    }
+  
+    function setupProductClick() {
+      const productLink = document.querySelector('a[href="/products"]');
+      if (productLink) {
+        productLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.getElementById("plates-section").style.display = "block";
+          document.getElementById("plates-section").scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    }
+  
+    function setupHomeClick() {
+      const homeLink = document.querySelector('a[href="/"]');
+      if (homeLink) {
+        homeLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.getElementById("hero-section").style.display = "block";
+          document.getElementById("hero-section").scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    }
+  
+    function setupLoginClick() {
+      const loginBtn = document.getElementById("login-btn");
+      if (loginBtn) {
+        loginBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const signupSection = document.getElementById("signup-section");
+          if (signupSection) {
+            signupSection.style.display = "block";
+            signupSection.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      }
+    }
+  
+    includeHTML();
+  </script>
+  
+</body>
+</html>
