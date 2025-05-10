@@ -1,0 +1,33 @@
+<div class="containers" onclick="togglePlates()">
+    <div class="plate square center" id="squarePlate">
+      <span class="fade-text">Square Plate Fade In</span>
+    </div>
+    <div class="plate round bottom" id="roundPlate"></div>
+  </div>
+  
+  <script>
+    let step = 0;
+    function togglePlates() {
+      const square = document.getElementById("squarePlate");
+      const round = document.getElementById("roundPlate");
+  
+      if (step === 0) {
+        square.classList.remove("center");
+        square.classList.add("bottom");
+  
+        round.classList.remove("bottom", "depth-animate");
+        round.classList.add("center", "depth-animate");
+        round.innerHTML = '<span class="fade-text">Round Plate Fade In</span>';
+      } else {
+        round.classList.remove("center", "depth-animate");
+        round.classList.add("bottom");
+        round.innerHTML = '';
+  
+        square.classList.remove("bottom");
+        square.classList.add("center");
+        square.innerHTML = '<span class="fade-text">Square Plate Fade In</span>';
+      }
+      step = (step + 1) % 2;
+    }
+  </script>
+  

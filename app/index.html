@@ -1,125 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plates Animation App</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aumekaa</title>
+  <link rel="stylesheet" href="styles/app.css" />
+  <link rel="stylesheet" href="styles/navbar.css" />
+  <link rel="stylesheet" href="styles/hero.css" />
+  <link rel="stylesheet" href="styles/plates.css" />
 </head>
-
 <body>
-  <div class="app">
-    <header class="navbar">
-      <div class="container">
-        <!-- Logo -->
-        <div class="logo">
-          <a href="/">
-            <img src="assets/image.png" alt="Logo" height="81" width="100" />
-          </a>
-        </div>
+  <div include-html="sections/navbar.html"></div>
+  <div include-html="sections/hero.html"></div>
+  <div include-html="sections/plates.html" id="plates-section" style="display: none;"></div>
 
-        <!-- Navigation Links - Centered -->
-        <nav class="nav-links">
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About us</a></li>
-            <li>
-              <a href="#" id="products-link">Products</a>
-            </li>
-            <li><a href="/solutions">Solutions</a></li>
-            <li><a href="/technology">Technology</a></li>
-            <li><a href="/projects">Custom Projects</a></li>
-            <li><a href="/blog">Blogs & Events</a></li>
-          </ul>
-        </nav>
-
-        <!-- Right Side - Icons and Auth -->
-        <div class="nav-right">
-          <button class="icon-button" aria-label="Search"><span class="search-icon">🔍</span></button>
-          <button class="icon-button" aria-label="Cart"><span class="cart-icon">🛒</span></button>
-          <div class="auth-buttons">
-            <a href="/login" class="login-btn">Login</a>
-            <a href="/register" class="register-btn">Register</a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-
-    <section class="hero-section">
-      <div class="video-container">
-        <!-- Background Video -->
-        <video autoplay muted loop class="background-video">
-          <source src="assets/woodland-trees.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        <!-- Overlay Content -->
-        <div class="hero-overlay">
-          <h1>Sustainable Solutions for a Greener Tomorrow</h1>
-          <p>
-            At Aumekaa, we provide 100% plastic-free, biodegradable, and compostable alternatives for both businesses
-            and consumers—ensuring eco-friendly living without compromising quality.
-          </p>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="plates-section" style="display: none;">
-      <div class="containers" id="plates-container">
-        <div class="plate square center" id="square-plate">
-          <span class="fade-text" id="square-text">Square Plate Fade In</span>
-        </div>
-        <div class="plate round bottom" id="round-plate">
-          <span class="fade-text" id="round-text">Round Plate Fade In</span>
-        </div>
-      </div>
-    </section>
-    
-
-  </div>
   <script>
-    document.getElementById("products-link").addEventListener("click", function (e) {
-      e.preventDefault();
-  
-      const plateSection = document.getElementById("plates-section");
-  
-      // Show section if hidden
-      plateSection.style.display = "block";
-  
-      // Scroll to it smoothly
-      plateSection.scrollIntoView({ behavior: "smooth" });
-  
-      // Optionally trigger the animation once it becomes visible
-      const square = document.getElementById("square-plate");
-      const round = document.getElementById("round-plate");
-      const squareText = document.getElementById("square-text");
-      const roundText = document.getElementById("round-text");
-      let step = 0;
-  
-      squareText.style.display = "block";
-      roundText.style.display = "none";
-  
-      document.getElementById("plates-container").onclick = function () {
-        if (step === 0) {
-          square.className = "plate square bottom";
-          round.className = "plate round center depth-animate";
-          squareText.style.display = "none";
-          roundText.style.display = "block";
-        } else {
-          square.className = "plate square center";
-          round.className = "plate round bottom";
-          squareText.style.display = "block";
-          roundText.style.display = "none";
+    function includeHTML() {
+      const elements = document.querySelectorAll('[include-html]');
+      elements.forEach(el => {
+        const file = el.getAttribute("include-html");
+        if (file) {
+          fetch(file)
+            .then(resp => {
+              if (!resp.ok) throw new Error(`Cannot load ${file}`);
+              return resp.text();
+            })
+            .then(data => {
+              el.innerHTML = data;
+              el.removeAttribute("include-html");
+              includeHTML(); // recursive for nested includes
+              setupProductClick(); // setup listener after load
+            })
+            .catch(err => {
+              el.innerHTML = `<!-- ${err.message} -->`;
+            });
         }
-        step = (step + 1) % 2;
-      };
-    });
+      });
+    }
+
+    function setupProductClick() {
+      const productLink = document.querySelector('a[href="/products"]');
+      if (productLink) {
+        productLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.getElementById("plates-section").style.display = "block";
+          document.getElementById("plates-section").scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    }
+
+    includeHTML();
   </script>
-  
-
 </body>
-
 </html>
