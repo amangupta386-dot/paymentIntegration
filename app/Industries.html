@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,131 +25,171 @@
       font-size: 1rem;
     }
 
-    .industry-card {
-      background-color: white;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-      height: 100%;
-    }
+
 
     .industry-card:hover {
       transform: translateY(-5px);
     }
 
-    .industry-icon {
-      width: 50px;
-      height: 50px;
-      background-color: #e6f5ea;
-      color: #198754;
-      border-radius: 50%;
-      font-size: 24px;
+    .industry-card {
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      height: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      margin: 0 auto 10px;
+      align-items: center;
+      transition: transform 0.3s ease;
     }
 
+    .industry-card:hover {
+      transform: translateY(-5px);
+      border: 2px solid #198754; /* Green border */
+
+    }
+
+    /* Zig-zag effect */
+    .zigzag .col-6:nth-child(even) .industry-card {
+      transform: translateY(40px);
+    }
+
+    .zigzag .col-6:nth-child(odd) .industry-card {
+      transform: translateY(-10px);
+    }
+
+    @media (min-width: 768px) {
+      .zigzag .col-md-3:nth-child(even) .industry-card {
+        transform: translateY(40px);
+      }
+
+      .zigzag .col-md-3:nth-child(odd) .industry-card {
+        transform: translateY(-10px);
+      }
+    }
+
+
+    .industry-icon {
+      margin-bottom: 12px;
+    }
+
+    .industry-icon img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      filter: invert(32%) sepia(70%) saturate(438%) hue-rotate(96deg) brightness(95%) contrast(86%);
+    }
+
+    /* Industry text styling */
     .industry-label {
       font-weight: 600;
       color: #212529;
+      font-size: 1rem;
     }
   </style>
 </head>
+
 <body>
   <div id="navbar-container"></div>
 
-<section  onclick="window.location.href='./business.html'"
-class="py-5 text-center" data-aos="fade-up">
-  <div class="container">
-    <h2 class="section-title mb-2">Industries We Serve</h2>
-    <p class="section-subtitle mb-5">Providing sustainable solutions across diverse industry sectors.</p>
+  <section class="py-5 text-center" onclick="window.location.href='./business.html'" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title mb-2">Industries We Serve</h2>
+      <p class="section-subtitle mb-5">Providing sustainable solutions across diverse industry sectors.</p>
 
-    <div class="row g-4 justify-content-center">
-      <!-- Row 1 -->
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
-        <div class="industry-card">
-          <div class="industry-icon">🍽️</div>
-          <div class="industry-label">Food & Beverage</div>
+      <div class="row g-4 justify-content-center zigzag pl-16 pr-16">
+        <!-- Industry Card Template -->
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/Overlay-3.png" alt="Food" width="24" height="24" />
+            </div>
+            <div class="industry-label">Food & Beverage</div>
+          </div>
         </div>
-      </div>
 
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
-        <div class="industry-card">
-          <div class="industry-icon">🏨</div>
-          <div class="industry-label">Hospitality</div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/Retail.png" alt="Retail" width="24" height="24" />
+            </div>
+            <div class="industry-label">Retail</div>
+          </div>
         </div>
-      </div>
 
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
-        <div class="industry-card">
-          <div class="industry-icon">🚚</div>
-          <div class="industry-label">Logistics</div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/Hospitality.png" alt="Hospitality" width="24" height="24" />
+            </div>
+            <div class="industry-label">Hospitality</div>
+          </div>
         </div>
-      </div>
 
-      <!-- Row 2 -->
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
-        <div class="industry-card">
-          <div class="industry-icon">🏥</div>
-          <div class="industry-label">Healthcare</div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/manufacturing.png" alt="Logistics" width="24" height="24" />
+            </div>
+            <div class="industry-label">Logistics</div>
+          </div>
         </div>
-      </div>
 
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="500">
-        <div class="industry-card">
-          <div class="industry-icon">🛍️</div>
-          <div class="industry-label">Retail</div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="500">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/healthcare.png" alt="Healthcare" width="24" height="24" />
+            </div>
+            <div class="industry-label">Healthcare</div>
+          </div>
         </div>
-      </div>
 
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="600">
-        <div class="industry-card">
-          <div class="industry-icon">🏭</div>
-          <div class="industry-label">Manufacturing</div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="600">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/logistics.png" alt="Manufacturing" width="24" height="24" />
+            </div>
+            <div class="industry-label">Manufacturing</div>
+          </div>
         </div>
-      </div>
 
-      <!-- Row 3 -->
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="700">
-        <div class="industry-card">
-          <div class="industry-icon">🛒</div>
-          <div class="industry-label">E-commerce</div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="700">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/ecommerce.png" alt="E-commerce" width="24" height="24" />
+            </div>
+            <div class="industry-label">E-commerce</div>
+          </div>
         </div>
-      </div>
 
-      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="800">
-        <div class="industry-card">
-          <div class="industry-icon">🌱</div>
-          <div class="industry-label">Agriculture</div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="800">
+          <div class="industry-card">
+            <div class="industry-icon">
+              <img src="./assets/agriculture.png" alt="Agriculture" width="24" height="24" />
+            </div>
+            <div class="industry-label">Agriculture</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<div id="footer-container"></div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 800,
-    once: true
-  });
-
-  fetch('./navbar.html')
+    fetch('./navbar.html')
       .then(res => res.text())
       .then(data => {
         document.getElementById('navbar-container').innerHTML = data;
       });
-       // Load footer
-  fetch('./footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    });
-</script>
+
+  </script>
 </body>
+
 </html>
