@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +30,8 @@
 
     .testimonial-card:hover {
       transform: translateY(-5px);
+      border: 2px solid #198754; /* Green border */
+
     }
 
     .star-rating {
@@ -79,26 +82,45 @@
     .section-subtitle {
       color: #6c757d;
       font-size: 1rem;
+      max-width: 600px;
+      /* Controls how soon the text wraps */
+      text-align: center;
+      /* Center the text inside the container */
+      margin: 0 auto;
+      /* Center the block itself horizontally */
+      line-height: 1.6;
       margin-bottom: 40px;
+
     }
+      .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
   </style>
 </head>
+
 <body>
   <div id="navbar-container"></div>
 
-  <section  onclick="window.location.href='./blog.html'"
-  class="testimonial-section">
+  <section onclick="window.location.href='./blog.html'" class="testimonial-section pl-16 pr-16">
     <div class="container">
       <h2 class="section-title mb-2">What Our Customers Say</h2>
-      <p class="section-subtitle">Hear from businesses and consumers who have made the switch to sustainable alternatives.</p>
+      <p class="section-subtitle">Hear from businesses and consumers who have made the switch to sustainable
+        alternatives.</p>
 
-      <div class="row g-4">
+      <div class="flex overflow-x-auto gap-4 px-4 md:px-16 scrollbar-hide pt-2">
         <!-- Testimonial 1 -->
         <div class="col-md-4">
           <div class="testimonial-card h-100">
             <div class="star-rating">★★★★★</div>
             <p class="testimonial-text">
-              "Switching to Aumekaa's sustainable packaging has been a game-changer for our restaurant. Our customers love the eco-friendly approach, and we've seen a significant increase in positive feedback and repeat business."
+              "Switching to Aumekaa's sustainable packaging has been a game-changer for our restaurant. Our customers
+              love the eco-friendly approach, and we've seen a significant increase in positive feedback and repeat
+              business."
             </p>
             <div class="user-info mt-3">
               <div class="user-icon">👤</div>
@@ -115,7 +137,9 @@
           <div class="testimonial-card h-100">
             <div class="star-rating">★★★★★</div>
             <p class="testimonial-text">
-              "As an e-commerce business, we were looking for sustainable packaging solutions that wouldn’t compromise on quality. Aumekaa delivered exactly what we needed. Our customers appreciate the eco-friendly packaging, and it aligns perfectly with our brand values."
+              "As an e-commerce business, we were looking for sustainable packaging solutions that wouldn’t compromise
+              on quality. Aumekaa delivered exactly what we needed. Our customers appreciate the eco-friendly packaging,
+              and it aligns perfectly with our brand values."
             </p>
             <div class="user-info mt-3">
               <div class="user-icon">👤</div>
@@ -132,7 +156,28 @@
           <div class="testimonial-card h-100">
             <div class="star-rating">★★★★★</div>
             <p class="testimonial-text">
-              "I've been using Aumekaa's bamboo cutlery set for over a year now, and I’m impressed by both the quality and durability. It’s held up incredibly well with daily use, and I love knowing I’m making a small but meaningful impact on reducing plastic waste."
+              "I've been using Aumekaa's bamboo cutlery set for over a year now, and I’m impressed by both the quality
+              and durability. It’s held up incredibly well with daily use, and I love knowing I’m making a small but
+              meaningful impact on reducing plastic waste."
+            </p>
+            <div class="user-info mt-3">
+              <div class="user-icon">👤</div>
+              <div class="user-details text-start">
+                <strong>James Wilson</strong>
+                <small>Environmental Consultant</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- Testimonial 4 -->
+        <div class="col-md-4">
+          <div class="testimonial-card h-100">
+            <div class="star-rating">★★★★★</div>
+            <p class="testimonial-text">
+              "I've been using Aumekaa's bamboo cutlery set for over a year now, and I’m impressed by both the quality
+              and durability. It’s held up incredibly well with daily use, and I love knowing I’m making a small but
+              meaningful impact on reducing plastic waste."
             </p>
             <div class="user-info mt-3">
               <div class="user-icon">👤</div>
@@ -152,16 +197,17 @@
   <script>
 
     fetch('./navbar.html')
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById('navbar-container').innerHTML = data;
-        });
-         // Load footer
-  fetch('./footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    });
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+      });
+    // Load footer
+    // fetch('./footer.html')
+    //   .then(res => res.text())
+    //   .then(data => {
+    //     document.getElementById('footer-container').innerHTML = data;
+    //   });
   </script>
 </body>
+
 </html>
