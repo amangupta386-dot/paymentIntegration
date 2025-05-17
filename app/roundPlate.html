@@ -56,7 +56,7 @@
     }
 
     .dummy-content.bottom-left {
-      bottom: 100px;
+      bottom: 120px;
       left: 50px;
       animation-name: slideFromRightToLeft;
     }
@@ -83,13 +83,21 @@
       top: 20%;
       left: 50%;
       transform: translate(-50%, 50%);
-      font-size: clamp(2rem, 7vw, 7rem);
+      font-size: clamp(1.5rem, 8vw, 6rem);
+      /* More flexibility for small to large screens */
       font-weight: bold;
       color: #d3d3d3;
       opacity: 0;
       z-index: -1;
+      text-align: center;
+      padding: 0 1rem;
+      /* Prevent text overflow on small screens */
       animation: fadeInText 1.5s ease forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+
 
     /* Animations */
 

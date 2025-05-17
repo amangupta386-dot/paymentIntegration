@@ -56,8 +56,8 @@
     }
 
     .dummy-content.bottom-left {
-        bottom: 120px;
-        right: 50px;
+      bottom: 120px;
+      right: 50px;
       animation-name: slideFromLeftToRight;
     }
 
@@ -82,14 +82,20 @@
       position: absolute;
       top: 15%;
       left: 50%;
-      transform: translate(-50%, 50%);
-      font-size: clamp(3rem, 6vw, 6rem);
+      transform: translate(-50%, -50%);
+      font-size: clamp(2rem, 8vw, 5rem);
+      /* Scales better on smaller screens */
       font-weight: bold;
       color: #d3d3d3;
       opacity: 0;
       z-index: -1;
+      text-align: center;
+      white-space: nowrap;
       animation: fadeInText 1.5s ease forwards;
+      pointer-events: none;
+      /* Ensures background text doesn't interfere with interactions */
     }
+
 
     /* Animations */
 
@@ -199,10 +205,10 @@
       .then(data => {
         document.getElementById('navbar-container').innerHTML = data;
       });
-          let scrollTriggered = false;
+    let scrollTriggered = false;
 
     function handleClick() {
-         if (scrollTriggered) return; // prevent multiple triggers
+      if (scrollTriggered) return; // prevent multiple triggers
       scrollTriggered = true;
       const plateWrapper = document.querySelector('.plate-wrapper');
 
@@ -218,7 +224,7 @@
       }, 1200); // matches the fall animation duration
     }
 
-        // Scroll direction detection
+    // Scroll direction detection
     window.addEventListener('wheel', (event) => {
       if (scrollTriggered) return;
 

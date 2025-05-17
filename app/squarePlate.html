@@ -103,14 +103,19 @@
     position: absolute;
     top: 15%;
     left: 50%;
-    transform: translate(-50%, 50%);
-    font-size: clamp(2rem, 7vw, 7rem);
-    /* responsive font size */
+    transform: translate(-50%, 0%);
+    font-size: clamp(1.5rem, 8vw, 6rem);
+    /* Responsive font sizing */
     font-weight: bold;
     color: #d3d3d3;
     opacity: 0;
     z-index: -1;
+    text-align: center;
+    white-space: nowrap;
+    /* Prevent text from breaking to a new line */
     animation: fadeInText 1.5s ease forwards;
+    pointer-events: none;
+    /* Prevent interference with clickable elements */
   }
 
 
@@ -210,45 +215,45 @@
 
     <div class="background-text">Square Plate</div>
   </div>
- <script>
-  let scrollTriggered = false;
+  <script>
+    let scrollTriggered = false;
 
-  // Load navbar HTML
-  fetch('./navbar.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('navbar-container').innerHTML = data;
-    });
+    // Load navbar HTML
+    fetch('./navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+      });
 
-  function handleClick() {
-    if (scrollTriggered) return; // prevent multiple triggers
-    scrollTriggered = true;
-
-    const plateWrapper = document.querySelector('.plate-wrapper');
-
-    // Add the exit fall animation
-    plateWrapper.classList.add('fall-animation');
-
-    // Delay redirect until animation finishes
-    setTimeout(() => {
-      window.location.href = './roundPlate.html';
-    }, 1200); // match animation duration
-  }
-
-  // Scroll direction detection
-  window.addEventListener('wheel', (event) => {
-    if (scrollTriggered) return;
-
-    if (event.deltaY > 10) {
-      // Scrolling down
-      handleClick();
-    } else if (event.deltaY < -10) {
-      // Scrolling up
+    function handleClick() {
+      if (scrollTriggered) return; // prevent multiple triggers
       scrollTriggered = true;
-      window.location.href = './index.html';
+
+      const plateWrapper = document.querySelector('.plate-wrapper');
+
+      // Add the exit fall animation
+      plateWrapper.classList.add('fall-animation');
+
+      // Delay redirect until animation finishes
+      setTimeout(() => {
+        window.location.href = './roundPlate.html';
+      }, 1200); // match animation duration
     }
-  }, { passive: true });
-</script>
+
+    // Scroll direction detection
+    window.addEventListener('wheel', (event) => {
+      if (scrollTriggered) return;
+
+      if (event.deltaY > 10) {
+        // Scrolling down
+        handleClick();
+      } else if (event.deltaY < -10) {
+        // Scrolling up
+        scrollTriggered = true;
+        window.location.href = './index.html';
+      }
+    }, { passive: true });
+  </script>
 
 </body>
 
