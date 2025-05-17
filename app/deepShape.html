@@ -199,7 +199,11 @@
       .then(data => {
         document.getElementById('navbar-container').innerHTML = data;
       });
+          let scrollTriggered = false;
+
     function handleClick() {
+         if (scrollTriggered) return; // prevent multiple triggers
+      scrollTriggered = true;
       const plateWrapper = document.querySelector('.plate-wrapper');
 
       // Remove the rise animation class
@@ -213,6 +217,20 @@
         window.location.href = './trays.html';
       }, 1200); // matches the fall animation duration
     }
+
+        // Scroll direction detection
+    window.addEventListener('wheel', (event) => {
+      if (scrollTriggered) return;
+
+      if (event.deltaY > 10) {
+        // Scrolling down
+        handleClick();
+      } else if (event.deltaY < -10) {
+        // Scrolling up
+        scrollTriggered = true;
+        window.location.href = './roundPlate.html';
+      }
+    }, { passive: true });
   </script>
 </body>
 

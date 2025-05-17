@@ -159,11 +159,22 @@ class="py-5 text-center" data-aos="fade-up">
         document.getElementById('navbar-container').innerHTML = data;
       });
        // Load footer
-  fetch('./footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    });
+  // fetch('./footer.html')
+  //   .then(res => res.text())
+  //   .then(data => {
+  //     document.getElementById('footer-container').innerHTML = data;
+  //   });
+          // Scroll direction detection
+    window.addEventListener('wheel', (event) => {
+
+
+      if (event.deltaY > 10) {
+        window.location.href = './Industries.html';
+      } else if (event.deltaY < -10) {
+       
+        window.location.href = './ourcorevalue.html';
+      }
+    }, { passive: true });
 </script>
 
 </body>

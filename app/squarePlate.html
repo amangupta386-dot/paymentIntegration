@@ -210,35 +210,46 @@
 
     <div class="background-text">Square Plate</div>
   </div>
-  <script>
-    fetch('./navbar.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
-      });
-    function handleClick() {
-      const plateWrapper = document.querySelector('.plate-wrapper');
+ <script>
+  let scrollTriggered = false;
 
-      // Remove the rise animation class
-      // plateWrapper.classList.remove('plate-wrapper');
+  // Load navbar HTML
+  fetch('./navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
 
-      // Add the exit fall animation
-      plateWrapper.classList.add('fall-animation');
+  function handleClick() {
+    if (scrollTriggered) return; // prevent multiple triggers
+    scrollTriggered = true;
 
-      // Optional: delay redirect until animation finishes
-      setTimeout(() => {
-        window.location.href = './roundPlate.html';
-      }, 1200); // matches the fall animation duration
+    const plateWrapper = document.querySelector('.plate-wrapper');
+
+    // Add the exit fall animation
+    plateWrapper.classList.add('fall-animation');
+
+    // Delay redirect until animation finishes
+    setTimeout(() => {
+      window.location.href = './roundPlate.html';
+    }, 1200); // match animation duration
+  }
+
+  // Scroll direction detection
+  window.addEventListener('wheel', (event) => {
+    if (scrollTriggered) return;
+
+    if (event.deltaY > 10) {
+      // Scrolling down
+      handleClick();
+    } else if (event.deltaY < -10) {
+      // Scrolling up
+      scrollTriggered = true;
+      window.location.href = './index.html';
     }
+  }, { passive: true });
+</script>
 
-    // Load navbar HTML
-    fetch('./navbar.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
-      });
-
-  </script>
 </body>
 
 </html>

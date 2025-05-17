@@ -30,7 +30,8 @@
 
     .testimonial-card:hover {
       transform: translateY(-5px);
-      border: 2px solid #198754; /* Green border */
+      border: 2px solid #198754;
+      /* Green border */
 
     }
 
@@ -92,14 +93,17 @@
       margin-bottom: 40px;
 
     }
-      .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
 
-  .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
   </style>
 </head>
 
@@ -170,7 +174,7 @@
           </div>
         </div>
 
-          <!-- Testimonial 4 -->
+        <!-- Testimonial 4 -->
         <div class="col-md-4">
           <div class="testimonial-card h-100">
             <div class="star-rating">★★★★★</div>
@@ -207,6 +211,16 @@
     //   .then(data => {
     //     document.getElementById('footer-container').innerHTML = data;
     //   });
+    window.addEventListener('wheel', (event) => {
+
+
+      if (event.deltaY > 10) {
+        window.location.href = './blog.html';
+      } else if (event.deltaY < -10) {
+
+        window.location.href = './event.html';
+      }
+    }, { passive: true });
   </script>
 </body>
 

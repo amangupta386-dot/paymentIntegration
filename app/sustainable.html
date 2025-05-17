@@ -176,7 +176,17 @@ class="py-5 text-center" data-aos="fade-up">
         document.getElementById('navbar-container').innerHTML = data;
       });
        // Load footer
+        // Scroll direction detection
+    window.addEventListener('wheel', (event) => {
 
+
+      if (event.deltaY > 10) {
+        window.location.href = './ourcorevalue.html';
+      } else if (event.deltaY < -10) {
+       
+        window.location.href = './trays.html';
+      }
+    }, { passive: true });
 
 </script>
 

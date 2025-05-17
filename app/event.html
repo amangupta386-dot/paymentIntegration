@@ -147,6 +147,16 @@
     //   .then(data => {
     //     document.getElementById('footer-container').innerHTML = data;
     //   });
+        window.addEventListener('wheel', (event) => {
+
+
+      if (event.deltaY > 10) {
+        window.location.href = './customer.html';
+      } else if (event.deltaY < -10) {
+       
+        window.location.href = './business.html';
+      }
+    }, { passive: true });
   </script>
 
 </body>

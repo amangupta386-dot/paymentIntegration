@@ -158,6 +158,16 @@
   //   .then(data => {
   //     document.getElementById('footer-container').innerHTML = data;
   //   });
+      window.addEventListener('wheel', (event) => {
+
+
+      if (event.deltaY > 10) {
+        window.location.href = './event.html';
+      } else if (event.deltaY < -10) {
+       
+        window.location.href = './industries.html';
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>

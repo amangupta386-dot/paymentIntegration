@@ -121,6 +121,16 @@
       .then(data => {
         document.getElementById('navbar-container').innerHTML = data;
       });
+          window.addEventListener('wheel', (event) => {
+
+
+      if (event.deltaY > 10) {
+        // window.location.href = './.html';
+      } else if (event.deltaY < -10) {
+       
+        window.location.href = './blog.html';
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>

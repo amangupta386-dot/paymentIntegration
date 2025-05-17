@@ -20,14 +20,17 @@
       font-size: 1.8rem;
     }
 
-      .section-subtitle {
-    color: #6c757d;
-    font-size: 1rem;
-    max-width: 600px;      /* Controls how soon the text wraps */
-    text-align: center;     /* Center the text inside the container */
-    margin: 0 auto;         /* Center the block itself horizontally */
-    line-height: 1.6;
-  }
+    .section-subtitle {
+      color: #6c757d;
+      font-size: 1rem;
+      max-width: 600px;
+      /* Controls how soon the text wraps */
+      text-align: center;
+      /* Center the text inside the container */
+      margin: 0 auto;
+      /* Center the block itself horizontally */
+      line-height: 1.6;
+    }
 
 
 
@@ -52,7 +55,8 @@
 
     .industry-card:hover {
       transform: translateY(-5px);
-      border: 2px solid #198754; /* Green border */
+      border: 2px solid #198754;
+      /* Green border */
 
     }
 
@@ -102,7 +106,8 @@
   <section class="py-5 text-center" onclick="window.location.href='./business.html'" data-aos="fade-up">
     <div class="container">
       <h2 class="section-title mb-2">Industries We Serve</h2>
-      <p class="section-subtitle mb-5">Providing sustainable solutions across diverse industry sectors. roviding sustainable solutions across diverse industry sect</p>
+      <p class="section-subtitle mb-5">Providing sustainable solutions across diverse industry sectors. roviding
+        sustainable solutions across diverse industry sect</p>
 
       <div class="row g-4 justify-content-center zigzag pl-16 pr-16">
         <!-- Industry Card Template -->
@@ -194,6 +199,16 @@
         document.getElementById('navbar-container').innerHTML = data;
       });
 
+    window.addEventListener('wheel', (event) => {
+
+
+      if (event.deltaY > 10) {
+        window.location.href = './business.html';
+      } else if (event.deltaY < -10) {
+
+        window.location.href = './featureproducts.html';
+      }
+    }, { passive: true });
   </script>
 </body>
 

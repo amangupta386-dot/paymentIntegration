@@ -132,6 +132,18 @@ class="py-5 text-center" data-aos="fade-up">
   //   .then(data => {
   //     document.getElementById('footer-container').innerHTML = data;
   //   });
+
+          // Scroll direction detection
+    window.addEventListener('wheel', (event) => {
+
+
+      if (event.deltaY > 10) {
+        window.location.href = './featureproducts.html';
+      } else if (event.deltaY < -10) {
+       
+        window.location.href = './sustainable.html';
+      }
+    }, { passive: true });
   AOS.init({
     duration: 800,
     once: true

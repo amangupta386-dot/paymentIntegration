@@ -7,33 +7,67 @@
   <title>Aumekaa UI</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
 
 <body class="bg-white text-gray-800 font-sans">
-
   <div id="navbar-container"></div>
 
-  <!-- Hero Section with Background Video -->
-  <section onclick="window.location.href='./squarePlate.html'" class="hero-section flex justify-center bg-white mt-5 cursor-pointer">
-    <div class="relative w-full max-w-[90vw] h-[60vh] sm:h-[500px] md:h-[580px] rounded-3xl overflow-hidden shadow-lg mx-4 sm:mx-6">
-      <video autoplay muted loop playsinline class="absolute w-full h-full object-cover">
-        <source src="assets/woodland-trees.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-black opacity-30 z-0"></div>
-      <div class="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4 z-10">
-        <h1 class="text-xl sm:text-2xl md:text-4xl font-bold mb-4 drop-shadow-md">
-          Sustainable Solutions for a Greener Tomorrow
-        </h1>
-        <p class="text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-          At Aumekaa, we provide 100% plastic-free, biodegradable, and compostable alternatives for both businesses and
-          consumers—ensuring eco-friendly living without compromising quality.
-        </p>
+
+  <!-- Hero Section -->
+  <section id="hero-section" class="bg-white mt-5 cursor-pointer">
+    <div class="max-w-[1500px] mx-auto px-4 md:px-8 lg:px-16">
+      <div class="relative w-full h-[570px] rounded-3xl overflow-hidden shadow-lg">
+        <video autoplay muted loop playsinline class="absolute w-full h-full object-cover">
+          <source src="assets/woodland-trees.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="absolute inset-0 bg-black opacity-30 z-0"></div>
+        <div
+          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4 z-10">
+          <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md">
+            Sustainable Solutions for a Greener Tomorrow
+          </h1>
+          <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+            At Aumekaa, we provide 100% plastic-free, biodegradable, and compostable alternatives for both businesses
+            and
+            consumers—ensuring eco-friendly living without compromising quality.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
+
   <script>
+    // Hero Section Navigation
+    const heroSection = document.getElementById('hero-section');
+    heroSection.addEventListener('click', () => {
+      window.location.href = './squarePlate.html';
+    });
+
+    // Scroll Navigation
+    let lastScrollTime = 0;
+    const scrollCooldown = 1000;
+    window.addEventListener('wheel', (event) => {
+      const now = Date.now();
+      if (now - lastScrollTime < scrollCooldown) return;
+
+      if (event.deltaY > 0) {
+         heroSection.click();
+      } else if (event.deltaY < 0) {
+
+      }
+
+      lastScrollTime = now;
+    }, { passive: true });
+
     fetch('./navbar.html')
       .then(res => res.text())
       .then(data => {
