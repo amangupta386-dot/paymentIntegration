@@ -61,14 +61,17 @@
   .plate-wrapper {
     position: absolute;
     left: 50%;
-    top: 100%;
-    transform: translate(-50%, 0);
+    top: 50%;
+    /* changed */
+    transform: translate(-50%, -50%);
+    /* changed */
     animation: riseRotateToCenter 1.8s ease-out forwards;
   }
 
+
   .plate-image {
-    width: 420px;
-    height: 420px;
+    width: 350px;
+    height: 350px;
     object-fit: contain;
     opacity: 0;
     animation: fadeIn 1.8s ease-out forwards;
@@ -101,22 +104,23 @@
 
   .background-text {
     position: absolute;
-    top: 15%;
+    top: 40%;
+    /* changed */
     left: 50%;
-    transform: translate(-50%, 0%);
-    font-size: clamp(1.5rem, 8vw, 6rem);
-    /* Responsive font sizing */
-    font-weight: bold;
-    color: #d3d3d3;
+    transform: translate(-50%, -50%);
+    /* changed */
+    font-size: clamp(1.5rem, 8vw, 20rem);
+    font-weight: 600;
+    color: #eaeaea;
     opacity: 0;
     z-index: -1;
     text-align: center;
     white-space: nowrap;
-    /* Prevent text from breaking to a new line */
     animation: fadeInText 1.5s ease forwards;
     pointer-events: none;
-    /* Prevent interference with clickable elements */
   }
+
+
 
 
 
@@ -172,10 +176,11 @@
     }
 
     100% {
-      transform: translate(-50%, 50%);
+      transform: translate(-50%, -50%);
       opacity: 1;
     }
   }
+
 
   @keyframes fallRotateToBottom {
     0% {

@@ -15,8 +15,7 @@
     }
 
     .container {
-      width: 500px;
-      /* reduced from 600px */
+      max-width: 100%;
       margin: auto;
       background: white;
       border-radius: 16px;
@@ -178,48 +177,47 @@
     }
 
     .cart-sidebar {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 300px;
-  height: 100vh;
-  background-color: #fff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  z-index: 1050;
-  transform: translateX(100%);
-}
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 300px;
+      height: 100vh;
+      background-color: #fff;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      z-index: 1050;
+      transform: translateX(100%);
+    }
 
-.cart-sidebar.open {
-  transform: translateX(0);
-}
+    .cart-sidebar.open {
+      transform: translateX(0);
+    }
 
-.empty-message {
-  color: red;
-  text-align: center;
-  font-weight: bold;
-  margin-top: 30px;
-}
+    .empty-message {
+      color: red;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 30px;
+    }
 
-.item-box {
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-  padding: 40px;
-  text-align: center;
-  color: #999;
-  margin-top: 20px;
-}
+    .item-box {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      color: #999;
+      margin-top: 20px;
+    }
 
-.close-btn {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
+    .close-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -228,102 +226,106 @@
 
   <div id="products-dropdown-container" style="position: absolute; z-index: 999;"></div>
   <div id="about-dropdown-container" style="position: absolute; z-index: 999;"></div>
-<!-- Cart Sidebar -->
-<div id="cart-sidebar" class="cart-sidebar translate-x-full transition-transform duration-300 ease-in-out">
-  <button class="close-btn" onclick="closeCart()">×</button>
-  <h5 class="fw-bold">Add to Cart</h5>
-  <div class="empty-message">Empty</div>
-  <div class="item-box">Add a item</div>
-</div>
-
+  <!-- Cart Sidebar -->
+  <div id="cart-sidebar" class="cart-sidebar translate-x-full transition-transform duration-300 ease-in-out">
+    <button class="close-btn" onclick="closeCart()">×</button>
+    <h5 class="fw-bold">Add to Cart</h5>
+    <div class="empty-message">Empty</div>
+    <div class="item-box">Add a item</div>
+  </div>
 
   <!-- Hero Section -->
-  <section id="hero-section" class="bg-white mt-5 cursor-pointer">
-    <div class="max-w-[1500px] mx-auto px-4 md:px-8 lg:px-16">
-      <div class="relative w-full h-[570px] rounded-3xl overflow-hidden shadow-lg">
-        <video autoplay muted loop playsinline class="absolute w-full h-full object-cover">
-          <source src="assets/woodland-trees.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div class="absolute inset-0 bg-black opacity-30 z-0"></div>
-        <div
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4 z-10">
+<!-- Hero Section -->
+<section id="hero-section" class="bg-white mt-14" style="margin-bottom: 3.5rem; margin-left: 3.5rem; margin-right: 3.5rem;">
+  <div class="max-w-[100vw] mx-auto">
+    <div class="relative w-full" style="height: calc(100vh - 3.5rem - 3.5rem - 3.5rem);  border-radius: 1.5rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
+      <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+        <source src="assets/woodland-trees.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="absolute inset-0 bg-black bg-opacity-30 z-0"></div>
+
+      <div class="absolute inset-0 z-10 flex items-center justify-center px-4">
+        <div class="text-white text-center max-w-3xl">
           <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md">
             Sustainable Solutions for a Greener Tomorrow
           </h1>
-          <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+          <p class="text-base md:text-lg leading-relaxed drop-shadow-md">
             At Aumekaa, we provide 100% plastic-free, biodegradable, and compostable alternatives for both businesses
-            and
-            consumers—ensuring eco-friendly living without compromising quality.
+            and consumers—ensuring eco-friendly living without compromising quality.
           </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Hero Section Navigation
-  const heroSection = document.getElementById('hero-section');
-  if (heroSection) {
-    heroSection.addEventListener('click', () => {
-      window.location.href = './squarePlate.html';
-    });
-  }
 
-  // Scroll Navigation
-  let lastScrollTime = 0;
-  const scrollCooldown = 1000;
-  window.addEventListener('wheel', (event) => {
-    const now = Date.now();
-    if (now - lastScrollTime < scrollCooldown) return;
 
-    if (event.deltaY > 0 && heroSection) {
-      heroSection.click();
-    }
 
-    lastScrollTime = now;
-  }, { passive: true });
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hero Section Navigation
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) {
+        heroSection.addEventListener('click', () => {
+          window.location.href = './squarePlate.html';
+        });
+      }
 
-  // Dropdown Logic + Navbar load
-  fetch('./navbar.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('navbar-container').innerHTML = data;
+      // Scroll Navigation
+      let lastScrollTime = 0;
+      const scrollCooldown = 1000;
+      window.addEventListener('wheel', (event) => {
+        const now = Date.now();
+        if (now - lastScrollTime < scrollCooldown) return;
 
-      // Get dropdown elements & triggers AFTER navbar is loaded
-      const productsDropdown = document.getElementById('products-dropdown-container');
-      const aboutDropdown = document.getElementById('about-dropdown-container');
-      const productsTrigger = document.getElementById('products-tab-trigger');
-      const aboutTrigger = document.getElementById('about-tab-trigger');
-
-      let isProductsOpen = false;
-      let isAboutOpen = false;
-
-      // PRODUCTS DROPDOWN
-      productsTrigger.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        if (isProductsOpen) {
-          productsDropdown.innerHTML = '';
-          productsDropdown.style.display = 'none';
-          isProductsOpen = false;
-          return;
+        if (event.deltaY > 0 && heroSection) {
+          heroSection.click();
         }
 
-        // Close About dropdown if open
-        if (isAboutOpen) {
-          aboutDropdown.innerHTML = '';
-          aboutDropdown.style.display = 'none';
-          isAboutOpen = false;
-        }
+        lastScrollTime = now;
+      }, { passive: true });
 
-        const rect = this.getBoundingClientRect();
-        productsDropdown.style.top = `${rect.bottom + window.scrollY}px`;
-        productsDropdown.style.left = `${rect.left + window.scrollX}px`;
-        productsDropdown.style.display = 'block';
+      // Dropdown Logic + Navbar load
+      fetch('./navbar.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('navbar-container').innerHTML = data;
 
-        productsDropdown.innerHTML = `
+          // Get dropdown elements & triggers AFTER navbar is loaded
+          const productsDropdown = document.getElementById('products-dropdown-container');
+          const aboutDropdown = document.getElementById('about-dropdown-container');
+          const productsTrigger = document.getElementById('products-tab-trigger');
+          const aboutTrigger = document.getElementById('about-tab-trigger');
+
+          let isProductsOpen = false;
+          let isAboutOpen = false;
+
+          // PRODUCTS DROPDOWN
+          productsTrigger.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (isProductsOpen) {
+              productsDropdown.innerHTML = '';
+              productsDropdown.style.display = 'none';
+              isProductsOpen = false;
+              return;
+            }
+
+            // Close About dropdown if open
+            if (isAboutOpen) {
+              aboutDropdown.innerHTML = '';
+              aboutDropdown.style.display = 'none';
+              isAboutOpen = false;
+            }
+
+            const rect = this.getBoundingClientRect();
+            productsDropdown.style.top = `${rect.bottom + window.scrollY}px`;
+            productsDropdown.style.left = `${rect.left + window.scrollX}px`;
+            productsDropdown.style.display = 'block';
+
+            productsDropdown.innerHTML = `
           <div class="container">
             <div class="tab-bar" id="tabBar">
               <div class="tab-highlight" id="tabHighlight"></div>
@@ -339,44 +341,44 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
 
-        isProductsOpen = true;
+            isProductsOpen = true;
 
-        setTimeout(() => {
-          const tabs = document.querySelectorAll('.tab');
-          const highlight = document.getElementById('tabHighlight');
-          const content = document.getElementById('content');
+            setTimeout(() => {
+              const tabs = document.querySelectorAll('.tab');
+              const highlight = document.getElementById('tabHighlight');
+              const content = document.getElementById('content');
 
-          const data = [
-            {
-              title: "Arreca Products",
-              items: ["Compostable Cutlery", "Bamboo Products"],
-              image: "./assets/Plate.png"
-            },
-            {
-              title: "Drinkware",
-              items: ["Tableware", "Flatware"],
-              image: "./assets/round-plate.png"
-            },
-            {
-              title: "Industrial Packing",
-              items: ["Foodservice Packaging", "E-Commerce Packaging", "Cornstarch Bags"],
-              image: "./assets/square-plate.png"
-            },
-            {
-              title: "Tableware",
-              items: ["Decor Items", "Gift Box"],
-              image: "./assets/tray.png"
-            }
-          ];
+              const data = [
+                {
+                  title: "Arreca Products",
+                  items: ["Compostable Cutlery", "Bamboo Products"],
+                  image: "./assets/Plate.png"
+                },
+                {
+                  title: "Drinkware",
+                  items: ["Tableware", "Flatware"],
+                  image: "./assets/round-plate.png"
+                },
+                {
+                  title: "Industrial Packing",
+                  items: ["Foodservice Packaging", "E-Commerce Packaging", "Cornstarch Bags"],
+                  image: "./assets/square-plate.png"
+                },
+                {
+                  title: "Tableware",
+                  items: ["Decor Items", "Gift Box"],
+                  image: "./assets/tray.png"
+                }
+              ];
 
-          function updateHighlight(tab) {
-            highlight.style.width = `${tab.offsetWidth}px`;
-            highlight.style.left = `${tab.offsetLeft}px`;
-          }
+              function updateHighlight(tab) {
+                highlight.style.width = `${tab.offsetWidth}px`;
+                highlight.style.left = `${tab.offsetLeft}px`;
+              }
 
-          function updateContent(index) {
-            const d = data[index];
-            content.innerHTML = `
+              function updateContent(index) {
+                const d = data[index];
+                content.innerHTML = `
               <div style="display: flex; align-items: center; justify-content: center; gap: 24px;">
                 <img src="${d.image}" alt="Product" style="width: 80px; height: 80px; border-radius: 8px;">
                 <div style="text-align: left;">
@@ -387,46 +389,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </div>
             `;
-          }
+              }
 
-          tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-              tabs.forEach(t => t.classList.remove('active'));
-              tab.classList.add('active');
-              updateHighlight(tab);
-              updateContent(parseInt(tab.dataset.tab));
-            });
+              tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                  tabs.forEach(t => t.classList.remove('active'));
+                  tab.classList.add('active');
+                  updateHighlight(tab);
+                  updateContent(parseInt(tab.dataset.tab));
+                });
+              });
+
+              const activeTab = document.querySelector('.tab.active');
+              updateHighlight(activeTab);
+              updateContent(0);
+            }, 0);
           });
 
-          const activeTab = document.querySelector('.tab.active');
-          updateHighlight(activeTab);
-          updateContent(0);
-        }, 0);
-      });
+          // ABOUT DROPDOWN
+          aboutTrigger.addEventListener('click', function (e) {
+            e.preventDefault();
 
-      // ABOUT DROPDOWN
-      aboutTrigger.addEventListener('click', function (e) {
-        e.preventDefault();
+            if (isAboutOpen) {
+              aboutDropdown.innerHTML = '';
+              aboutDropdown.style.display = 'none';
+              isAboutOpen = false;
+              return;
+            }
 
-        if (isAboutOpen) {
-          aboutDropdown.innerHTML = '';
-          aboutDropdown.style.display = 'none';
-          isAboutOpen = false;
-          return;
-        }
+            if (isProductsOpen) {
+              productsDropdown.innerHTML = '';
+              productsDropdown.style.display = 'none';
+              isProductsOpen = false;
+            }
 
-        if (isProductsOpen) {
-          productsDropdown.innerHTML = '';
-          productsDropdown.style.display = 'none';
-          isProductsOpen = false;
-        }
+            const rect = this.getBoundingClientRect();
+            aboutDropdown.style.top = `${rect.bottom + window.scrollY}px`;
+            aboutDropdown.style.left = `${rect.left + window.scrollX}px`;
+            aboutDropdown.style.display = 'block';
 
-        const rect = this.getBoundingClientRect();
-        aboutDropdown.style.top = `${rect.bottom + window.scrollY}px`;
-        aboutDropdown.style.left = `${rect.left + window.scrollX}px`;
-        aboutDropdown.style.display = 'block';
-
-        aboutDropdown.innerHTML = `
+            aboutDropdown.innerHTML = `
           <div class="custom-menu">
             <ul class="mb-0 p-0">
               <li>Who We Are</li>
@@ -436,52 +438,52 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
 
-        isAboutOpen = true;
-      });
+            isAboutOpen = true;
+          });
 
-      // Close dropdowns on outside click
-      document.addEventListener('click', function (event) {
-        const isClickInsideProducts = productsDropdown.contains(event.target) || productsTrigger.contains(event.target);
-        const isClickInsideAbout = aboutDropdown.contains(event.target) || aboutTrigger.contains(event.target);
+          // Close dropdowns on outside click
+          document.addEventListener('click', function (event) {
+            const isClickInsideProducts = productsDropdown.contains(event.target) || productsTrigger.contains(event.target);
+            const isClickInsideAbout = aboutDropdown.contains(event.target) || aboutTrigger.contains(event.target);
 
-        if (!isClickInsideProducts && isProductsOpen) {
-          productsDropdown.innerHTML = '';
-          productsDropdown.style.display = 'none';
-          isProductsOpen = false;
-        }
+            if (!isClickInsideProducts && isProductsOpen) {
+              productsDropdown.innerHTML = '';
+              productsDropdown.style.display = 'none';
+              isProductsOpen = false;
+            }
 
-        if (!isClickInsideAbout && isAboutOpen) {
-          aboutDropdown.innerHTML = '';
-          aboutDropdown.style.display = 'none';
-          isAboutOpen = false;
-        }
-      });
+            if (!isClickInsideAbout && isAboutOpen) {
+              aboutDropdown.innerHTML = '';
+              aboutDropdown.style.display = 'none';
+              isAboutOpen = false;
+            }
+          });
 
-      // CART SIDEBAR logic (after navbar loaded)
-      const cartSidebar = document.createElement('div');
-      cartSidebar.classList.add('cart-sidebar');
-      cartSidebar.innerHTML = `
+          // CART SIDEBAR logic (after navbar loaded)
+          const cartSidebar = document.createElement('div');
+          cartSidebar.classList.add('cart-sidebar');
+          cartSidebar.innerHTML = `
         <button class="close-btn" aria-label="Close cart sidebar">&times;</button>
         <h5 class="fw-bold">Add to Cart</h5>
         <div class="empty-message" style="color:red; text-align:center; font-weight:bold; margin-top:30px;">Empty</div>
         <div class="item-box" style="border: 2px dashed #ccc; border-radius: 10px; padding: 40px; text-align: center; color: #999; margin-top: 20px;">Add a item</div>
       `;
-      document.body.appendChild(cartSidebar);
+          document.body.appendChild(cartSidebar);
 
-      cartSidebar.querySelector('.close-btn').addEventListener('click', () => {
-        cartSidebar.classList.remove('open');
-      });
+          cartSidebar.querySelector('.close-btn').addEventListener('click', () => {
+            cartSidebar.classList.remove('open');
+          });
 
-      const cartIcon = document.querySelector('.bi-cart');
-      if (cartIcon) {
-        cartIcon.style.cursor = 'pointer';
-        cartIcon.addEventListener('click', () => {
-          cartSidebar.classList.toggle('open');
+          const cartIcon = document.querySelector('.bi-cart');
+          if (cartIcon) {
+            cartIcon.style.cursor = 'pointer';
+            cartIcon.addEventListener('click', () => {
+              cartSidebar.classList.toggle('open');
+            });
+          }
         });
-      }
     });
-});
-</script>
+  </script>
 
 
 </body>
