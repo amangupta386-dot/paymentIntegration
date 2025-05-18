@@ -38,6 +38,8 @@
     font-size: 16px;
     animation-duration: 1.2s;
     animation-fill-mode: forwards;
+    letter-spacing: 2px;
+    text-shadow: 5px;
   }
 
   .dummy-content h3 {
@@ -48,13 +50,13 @@
 
   .dummy-content.left {
     top: 80px;
-    left: 50px;
+    left: 100px;
     animation-name: slideInLeft;
   }
 
   .dummy-content.right {
-    bottom: 120px;
-    right: 50px;
+    bottom: 160px;
+    right: 100px;
     animation-name: slideInRight;
   }
 
@@ -70,8 +72,8 @@
 
 
   .plate-image {
-    width: 350px;
-    height: 350px;
+    width: 500px;
+    height: 500px;
     object-fit: contain;
     opacity: 0;
     animation: fadeIn 1.8s ease-out forwards;
@@ -109,7 +111,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     /* changed */
-    font-size: clamp(1.5rem, 8vw, 20rem);
+    font-size: clamp(1.5rem, 10vw, 50rem);
     font-weight: 600;
     color: #eaeaea;
     opacity: 0;
