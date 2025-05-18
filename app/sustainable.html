@@ -33,9 +33,19 @@
       height: 100%;
     }
 
-    .solution-card:hover {
-      border-color: #198754;
-    }
+.solution-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  background: white;
+  box-shadow: 0 0 0 transparent;
+}
+
+.solution-card:hover {
+  box-shadow: 0 0 12px 2px rgba(25, 135, 84, 0.4); /* #198754 with opacity */
+}
+
 
     .solution-img {
       height: 180px;

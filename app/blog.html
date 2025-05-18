@@ -10,7 +10,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    html, body {
+    html,
+    body {
       background-color: #f8f9fa;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
@@ -25,10 +26,19 @@
     }
 
     .blog-card:hover {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 0 0 transparent;
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      border: 2px solid #198754;
     }
+
+    .blog-card:hover {
+  box-shadow: 0 0 12px 2px rgba(25, 135, 84, 0.4); /* #198754 with opacity */
+}
+
 
     .blog-meta {
       font-size: 0.85rem;
@@ -162,13 +172,13 @@
     //     document.getElementById('footer-container').innerHTML = data;
     //   });
 
-        window.addEventListener('wheel', (event) => {
+    window.addEventListener('wheel', (event) => {
 
 
       if (event.deltaY > 10) {
         window.location.href = './footer.html';
       } else if (event.deltaY < -10) {
-       
+
         window.location.href = './customer.html';
       }
     }, { passive: true });

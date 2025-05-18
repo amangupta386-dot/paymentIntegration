@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,14 +20,17 @@
       font-size: 1.8rem;
     }
 
-      .section-subtitle {
-    color: #6c757d;
-    font-size: 1rem;
-    max-width: 600px;      /* Controls how soon the text wraps */
-    text-align: center;     /* Center the text inside the container */
-    margin: 0 auto;         /* Center the block itself horizontally */
-    line-height: 1.6;
-  }
+    .section-subtitle {
+      color: #6c757d;
+      font-size: 1rem;
+      max-width: 600px;
+      /* Controls how soon the text wraps */
+      text-align: center;
+      /* Center the text inside the container */
+      margin: 0 auto;
+      /* Center the block itself horizontally */
+      line-height: 1.6;
+    }
 
 
     .vertical-card {
@@ -39,9 +43,18 @@
 
     .vertical-card:hover {
       transform: translateY(-5px);
-      border: 2px solid #198754; /* Green border */
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 0 0 transparent;
 
     }
+
+    .vertical-card:hover {
+  box-shadow: 0 0 12px 2px rgba(25, 135, 84, 0.4); /* #198754 with opacity */
+}
+
 
     .vertical-card img {
       width: 100%;
@@ -78,20 +91,22 @@
     }
   </style>
 </head>
+
 <body>
   <div id="navbar-container"></div>
 
-  <section  onclick="window.location.href='./event.html'"
-  class="py-5 text-center pr-16 pl-16" data-aos="fade-up">
+  <section onclick="window.location.href='./event.html'" class="py-5 text-center pr-16 pl-16" data-aos="fade-up">
     <div class="container">
       <h2 class="section-title mb-2">Business Verticals</h2>
-      <p class="section-subtitle mb-5">Comprehensive sustainable solutions across multiple business segments. Comprehensive sustainable solutions across multiple business segments</p>
+      <p class="section-subtitle mb-5">Comprehensive sustainable solutions across multiple business segments.
+        Comprehensive sustainable solutions across multiple business segments</p>
 
       <div class="row g-4">
         <!-- Consumer Products -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
           <div class="vertical-card h-100">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtmRC6T06vHOR5vWR9eHbC6r3OcSCVvof66A&s" alt="Consumer Products">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtmRC6T06vHOR5vWR9eHbC6r3OcSCVvof66A&s"
+              alt="Consumer Products">
             <div class="vertical-content text-start">
               <h5>Consumer Products</h5>
               <p>Sustainable alternatives for everyday use, from kitchen essentials to personal care items.</p>
@@ -152,22 +167,23 @@
       .then(data => {
         document.getElementById('navbar-container').innerHTML = data;
       });
-       // Load footer
-  // fetch('./footer.html')
-  //   .then(res => res.text())
-  //   .then(data => {
-  //     document.getElementById('footer-container').innerHTML = data;
-  //   });
-      window.addEventListener('wheel', (event) => {
+    // Load footer
+    // fetch('./footer.html')
+    //   .then(res => res.text())
+    //   .then(data => {
+    //     document.getElementById('footer-container').innerHTML = data;
+    //   });
+    window.addEventListener('wheel', (event) => {
 
 
       if (event.deltaY > 10) {
         window.location.href = './event.html';
       } else if (event.deltaY < -10) {
-       
+
         window.location.href = './industries.html';
       }
     }, { passive: true });
   </script>
 </body>
+
 </html>
