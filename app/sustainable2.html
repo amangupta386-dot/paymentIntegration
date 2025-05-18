@@ -52,9 +52,7 @@
       border: 2px solid transparent;
     }
 
-    .overlay-card:hover {
-      border-color: #198754;
-    }
+   
 
     .overlay-icon {
       width: 36px;
@@ -101,23 +99,25 @@
       max-width: 900px;
       margin: 60px auto;
       height: 450px;
+      margin-top: 7rem;
     }
 
-    .corner-card {
-      position: absolute;
-      max-width: 300px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      padding: 16px 20px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      z-index: 2;
-    }
+.corner-card {
+  position: absolute;
+  max-width: 300px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 0 0 transparent;
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
 
-    .corner-card:hover {
-      border-color: #198754;
-    }
+.corner-card:hover {
+  box-shadow: 0 0 12px 2px rgba(25, 135, 84, 0.4); /* green glow */
+  transform: translateY(-5px); /* lift up */
+}
 
     .top-left {
       top: 0;
