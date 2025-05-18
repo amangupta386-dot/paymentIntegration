@@ -176,6 +176,50 @@
     .custom-menu li:hover {
       color: #28a745;
     }
+
+    .cart-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1050;
+  transform: translateX(100%);
+}
+
+.cart-sidebar.open {
+  transform: translateX(0);
+}
+
+.empty-message {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.item-box {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  color: #999;
+  margin-top: 20px;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
   </style>
 </head>
 
@@ -184,6 +228,13 @@
 
   <div id="products-dropdown-container" style="position: absolute; z-index: 999;"></div>
   <div id="about-dropdown-container" style="position: absolute; z-index: 999;"></div>
+<!-- Cart Sidebar -->
+<div id="cart-sidebar" class="cart-sidebar translate-x-full transition-transform duration-300 ease-in-out">
+  <button class="close-btn" onclick="closeCart()">×</button>
+  <h5 class="fw-bold">Add to Cart</h5>
+  <div class="empty-message">Empty</div>
+  <div class="item-box">Add a item</div>
+</div>
 
 
   <!-- Hero Section -->
@@ -211,11 +262,14 @@
   </section>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
   // Hero Section Navigation
   const heroSection = document.getElementById('hero-section');
-  heroSection.addEventListener('click', () => {
-    window.location.href = './squarePlate.html';
-  });
+  if (heroSection) {
+    heroSection.addEventListener('click', () => {
+      window.location.href = './squarePlate.html';
+    });
+  }
 
   // Scroll Navigation
   let lastScrollTime = 0;
@@ -224,19 +278,20 @@
     const now = Date.now();
     if (now - lastScrollTime < scrollCooldown) return;
 
-    if (event.deltaY > 0) {
+    if (event.deltaY > 0 && heroSection) {
       heroSection.click();
     }
 
     lastScrollTime = now;
   }, { passive: true });
 
-  // Dropdown Logic
+  // Dropdown Logic + Navbar load
   fetch('./navbar.html')
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-container').innerHTML = data;
 
+      // Get dropdown elements & triggers AFTER navbar is loaded
       const productsDropdown = document.getElementById('products-dropdown-container');
       const aboutDropdown = document.getElementById('about-dropdown-container');
       const productsTrigger = document.getElementById('products-tab-trigger');
@@ -286,7 +341,6 @@
 
         isProductsOpen = true;
 
-        // Delay execution to ensure DOM is loaded
         setTimeout(() => {
           const tabs = document.querySelectorAll('.tab');
           const highlight = document.getElementById('tabHighlight');
@@ -328,7 +382,7 @@
                 <div style="text-align: left;">
                   <div style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">${d.title}</div>
                   <ul style="list-style: none; padding: 0; margin: 0; font-size: 15px; color: #444;">
-                    ${d.items.map(item => `<li style="margin-bottom: 6px;">${item}</li>`).join("")}
+                    ${d.items.map(item => `<li style="margin-bottom: 6px;">${item}</li>`).join('')}
                   </ul>
                 </div>
               </div>
@@ -361,7 +415,6 @@
           return;
         }
 
-        // Close Products dropdown if open
         if (isProductsOpen) {
           productsDropdown.innerHTML = '';
           productsDropdown.style.display = 'none';
@@ -386,7 +439,7 @@
         isAboutOpen = true;
       });
 
-      // CLOSE dropdowns on outside click
+      // Close dropdowns on outside click
       document.addEventListener('click', function (event) {
         const isClickInsideProducts = productsDropdown.contains(event.target) || productsTrigger.contains(event.target);
         const isClickInsideAbout = aboutDropdown.contains(event.target) || aboutTrigger.contains(event.target);
@@ -403,8 +456,33 @@
           isAboutOpen = false;
         }
       });
+
+      // CART SIDEBAR logic (after navbar loaded)
+      const cartSidebar = document.createElement('div');
+      cartSidebar.classList.add('cart-sidebar');
+      cartSidebar.innerHTML = `
+        <button class="close-btn" aria-label="Close cart sidebar">&times;</button>
+        <h5 class="fw-bold">Add to Cart</h5>
+        <div class="empty-message" style="color:red; text-align:center; font-weight:bold; margin-top:30px;">Empty</div>
+        <div class="item-box" style="border: 2px dashed #ccc; border-radius: 10px; padding: 40px; text-align: center; color: #999; margin-top: 20px;">Add a item</div>
+      `;
+      document.body.appendChild(cartSidebar);
+
+      cartSidebar.querySelector('.close-btn').addEventListener('click', () => {
+        cartSidebar.classList.remove('open');
+      });
+
+      const cartIcon = document.querySelector('.bi-cart');
+      if (cartIcon) {
+        cartIcon.style.cursor = 'pointer';
+        cartIcon.addEventListener('click', () => {
+          cartSidebar.classList.toggle('open');
+        });
+      }
     });
+});
 </script>
+
 
 </body>
 
